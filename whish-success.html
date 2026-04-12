@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Payment Successful</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 0; padding: 24px; background: #f7f7fb; }
+      .card { max-width: 520px; margin: 64px auto; background: #fff; padding: 20px 18px; border-radius: 12px; box-shadow: 0 4px 18px rgba(0,0,0,0.06); }
+      h1 { margin: 0 0 8px; font-size: 20px; }
+      p { margin: 0 0 16px; color: #444; }
+      code { background: #f2f2f7; padding: 2px 6px; border-radius: 6px; }
+      .btn { display:inline-block; padding:10px 14px; border-radius: 10px; text-decoration:none; background:#081157; color:#fff; }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Payment successful</h1>
+      <p>You can close this tab. We’ll switch you back to the app automatically.</p>
+      <p id="req"></p>
+      <a class="btn" href="javascript:void(0)" onclick="returnToApp()">Return to app</a>
+    </div>
+    <script>
+      function getParam(name) {
+        try { return new URLSearchParams(window.location.search).get(name) || ""; } catch (e) { return ""; }
+      }
+      const requestId = getParam("requestId");
+      if (requestId) document.getElementById("req").innerHTML = "Request: <code>" + requestId + "</code>";
+
+      function notifyOpener() {
+        try {
+          if (window.opener && !window.opener.closed) {
+            window.opener.postMessage({
+              type: "OEG_PAYMENT_RESULT",
+              status: "success",
+              requestId: requestId,
+              at: new Date().toISOString()
+            }, "*");
+            return true;
+          }
+        } catch (e) {}
+        return false;
+      }
+
+      function persistFallback() {
+        try {
+          if (requestId) {
+            localStorage.setItem(
+              "oeg_payment_result_" + requestId,
+              JSON.stringify({ status: "success", requestId: requestId, at: new Date().toISOString() })
+            );
+          }
+        } catch (e) {}
+      }
+
+      function returnToApp() {
+        const notified = notifyOpener();
+        persistFallback();
+        if (notified) {
+          window.close();
+          return;
+        }
+        // Fallback: go to payment route in same tab on current origin.
+        const base = window.location.origin;
+        window.location.href = base + "/#/request-payment-page?id=" + encodeURIComponent(requestId) + "&payment_status=success&requestId=" + encodeURIComponent(requestId);
+      }
+
+      // Auto-run
+      setTimeout(returnToApp, 200);
+    </script>
+  </body>
+</html>
+
