@@ -3,12 +3,12 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"flutter_bootstrap.js": "06f8f3f2122279f4a2e26f417bf40166",
+const RESOURCES = {"flutter_bootstrap.js": "4ac85996a0d631b21c4a856a236287d8",
 "version.json": "17ebb0af53c18f87afc1569bc0dd4caf",
 "index.html": "84cc9800d6a22fc3dff5d5724fb6ac24",
 "/": "84cc9800d6a22fc3dff5d5724fb6ac24",
 "firebase-messaging-sw.js": "1c915c2767d1c252ddd81007063bdcdb",
-"main.dart.js": "1ebabfe2a153aad94fbcc5b2e64a2b4e",
+"main.dart.js": "0a18d06aaffded1b69e6d07da5b41ee3",
 "whish-success.html": "73fe6d2d0592f5d6bd6aebff2ab794b0",
 "flutter.js": "24bc71911b75b5f8135c949e27a2984e",
 "favicon.png": "4c9d1a49b709ca020dad1396b8e2453b",
@@ -35,7 +35,7 @@ const RESOURCES = {"flutter_bootstrap.js": "06f8f3f2122279f4a2e26f417bf40166",
 "assets/assets/jsons/countries.json": "832a0cb85d3d75c973a9fb18a600dcce",
 "assets/assets/images/new/onboarding1.png": "fa977491134821157df98fec37f5596f",
 "assets/assets/images/new/homework_image.jpg": "4c5cf7bcfe03edd986b22ce5b3865018",
-"assets/assets/images/new/class.png": "4dfc052b9767ea929d1bd9309af3e219",
+"assets/assets/images/new/class.png": "accee5b8063a900bfa25684aac5a4b26",
 "assets/assets/images/new/onboarding3.png": "9c240465c133263bcf2eaa8fa3afa283",
 "assets/assets/images/new/onboarding2.png": "5116a946916a32db5d188c142010bf59",
 "assets/assets/images/new/french.png": "edce83d1273bca4d22d913649c13351a",
