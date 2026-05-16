@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#F43F5E" />
-    <title>Payment unsuccessful — OEG</title>
+    <meta name="theme-color" content="#F59E0B" />
+    <title>Checkout cancelled — OEG</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet" />
@@ -13,8 +13,8 @@
         --ink: #090a2d;
         --muted: #6f7284;
         --card: #ffffff;
-        --danger: #f43f5e;
-        --danger-soft: rgba(244, 63, 94, 0.1);
+        --amber: #f59e0b;
+        --amber-soft: rgba(245, 158, 11, 0.15);
         --shadow: 0 24px 64px rgba(9, 10, 45, 0.12), 0 4px 16px rgba(9, 10, 45, 0.06);
         --brand: #e91e63;
       }
@@ -23,20 +23,15 @@
         margin: 0;
         min-height: 100vh;
         font-family: "DM Sans", system-ui, -apple-system, sans-serif;
-        background: radial-gradient(1000px 520px at 80% -10%, rgba(244, 63, 94, 0.1), transparent 55%),
-                    radial-gradient(800px 400px at -10% 30%, rgba(233, 30, 99, 0.06), transparent 45%),
-                    linear-gradient(180deg, #fff8f8 0%, #f7f7fa 100%);
+        background: radial-gradient(1000px 520px at 70% -10%, rgba(245, 158, 11, 0.14), transparent 55%),
+                    linear-gradient(180deg, #fffbf5 0%, #f7f7fa 100%);
         color: var(--ink);
         display: flex;
         align-items: center;
         justify-content: center;
         padding: 24px 16px;
       }
-      .wrap {
-        width: 100%;
-        max-width: 440px;
-        animation: rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
-      }
+      .wrap { width: 100%; max-width: 440px; animation: rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) both; }
       @keyframes rise {
         from { opacity: 0; transform: translateY(16px) scale(0.98); }
         to { opacity: 1; transform: translateY(0) scale(1); }
@@ -46,7 +41,7 @@
         border-radius: 24px;
         padding: 40px 32px 36px;
         box-shadow: var(--shadow);
-        border: 1px solid rgba(244, 63, 94, 0.14);
+        border: 1px solid rgba(245, 158, 11, 0.2);
         text-align: center;
       }
       .icon-ring {
@@ -54,7 +49,7 @@
         height: 88px;
         margin: 0 auto 24px;
         border-radius: 50%;
-        background: var(--danger-soft);
+        background: var(--amber-soft);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -70,15 +65,10 @@
         font-size: 1.5rem;
         font-weight: 700;
         letter-spacing: -0.02em;
-        color: #b91c3c;
+        color: #b45309;
         line-height: 1.2;
       }
-      .lead {
-        margin: 0 0 20px;
-        font-size: 1rem;
-        line-height: 1.55;
-        color: var(--muted);
-      }
+      .lead { margin: 0 0 20px; font-size: 1rem; line-height: 1.55; color: var(--muted); }
       .req {
         font-size: 0.8125rem;
         color: var(--muted);
@@ -99,22 +89,19 @@
         color: var(--muted);
         margin-bottom: 8px;
       }
-      .dots {
-        display: inline-flex;
-        gap: 4px;
-      }
+      .dots { display: inline-flex; gap: 4px; }
       .dots span {
         width: 6px;
         height: 6px;
         border-radius: 50%;
-        background: var(--danger);
-        opacity: 0.35;
+        background: var(--amber);
+        opacity: 0.45;
         animation: blink 1.2s ease-in-out infinite;
       }
       .dots span:nth-child(2) { animation-delay: 0.2s; }
       .dots span:nth-child(3) { animation-delay: 0.4s; }
       @keyframes blink {
-        0%, 80%, 100% { opacity: 0.3; }
+        0%, 80%, 100% { opacity: 0.35; }
         40% { opacity: 1; }
       }
       .btn {
@@ -128,21 +115,14 @@
         font-size: 0.9375rem;
         font-weight: 600;
         color: #fff;
-        background: linear-gradient(135deg, var(--danger) 0%, #e11d48 100%);
+        background: linear-gradient(135deg, var(--brand) 0%, #c2185b 100%);
         border: none;
         cursor: pointer;
-        box-shadow: 0 8px 24px rgba(244, 63, 94, 0.35);
+        box-shadow: 0 8px 24px rgba(233, 30, 99, 0.35);
         transition: transform 0.15s ease, box-shadow 0.15s ease;
       }
-      .btn:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 12px 28px rgba(244, 63, 94, 0.4);
-      }
-      footer {
-        margin-top: 20px;
-        font-size: 0.75rem;
-        color: var(--muted);
-      }
+      .btn:hover { transform: translateY(-1px); box-shadow: 0 12px 28px rgba(233, 30, 99, 0.4); }
+      footer { margin-top: 20px; font-size: 0.75rem; color: var(--muted); }
     </style>
   </head>
   <body>
@@ -150,11 +130,11 @@
       <div class="card">
         <div class="icon-ring" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18 6L6 18M6 6l12 12" stroke="var(--danger)" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M12 8v8M8 12h8" stroke="var(--amber)" stroke-width="2.5" stroke-linecap="round"/>
           </svg>
         </div>
-        <h1>Payment didn’t go through</h1>
-        <p class="lead">No worries—your card wasn’t charged. You can try again from the invoice whenever you’re ready.</p>
+        <h1>Checkout cancelled</h1>
+        <p class="lead">You closed Stripe checkout before paying. Nothing was charged—open your invoice anytime to try again.</p>
         <p class="req" id="reqLine" style="display: none;"><strong>Request</strong> <span id="req"></span></p>
         <div class="status">
           <span class="dots" aria-hidden="true"><span></span><span></span><span></span></span>
@@ -168,7 +148,7 @@
       function getParam(name) {
         try { return new URLSearchParams(window.location.search).get(name) || ""; } catch (e) { return ""; }
       }
-      const requestId = getParam("requestId");
+      const requestId = getParam("requestId") || getParam("request_id") || "";
       if (requestId) {
         document.getElementById("req").textContent = requestId;
         document.getElementById("reqLine").style.display = "block";
@@ -179,7 +159,7 @@
           if (window.opener && !window.opener.closed) {
             window.opener.postMessage({
               type: "OEG_PAYMENT_RESULT",
-              status: "failed",
+              status: "cancelled",
               requestId: requestId,
               at: new Date().toISOString()
             }, "*");
@@ -189,26 +169,14 @@
         return false;
       }
 
-      function persistFallback() {
-        try {
-          if (requestId) {
-            localStorage.setItem(
-              "oeg_payment_result_" + requestId,
-              JSON.stringify({ status: "failed", requestId: requestId, at: new Date().toISOString() })
-            );
-          }
-        } catch (e) {}
-      }
-
       function returnToApp() {
         const notified = notifyOpener();
-        persistFallback();
         if (notified) {
           window.close();
           return;
         }
         const base = window.location.origin;
-        const q = "id=" + encodeURIComponent(requestId) + "&payment_status=failed&requestId=" + encodeURIComponent(requestId);
+        const q = "id=" + encodeURIComponent(requestId) + "&payment_status=cancelled&requestId=" + encodeURIComponent(requestId);
         window.location.href = base + "/#/request-payment-page?" + q;
       }
 
