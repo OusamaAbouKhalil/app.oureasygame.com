@@ -1,6 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" style="background:#8A0084;background-image:linear-gradient(135deg,#8A0084 0%,#D040C9 100%)">
 <head>
+  <meta charset="UTF-8">
+  <meta name="theme-color" content="#8A0084">
+  <meta name="color-scheme" content="light">
+  <!-- Critical: paint splash colors before any other head content parses -->
+  <style id="oeg-critical-splash">
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #8A0084;
+      background-image: linear-gradient(135deg, #8A0084 0%, #D040C9 100%);
+    }
+    flt-glass-pane, flt-scene-host, flutter-view, #flutter_host {
+      background-color: #8A0084 !important;
+      background-image: linear-gradient(135deg, #8A0084 0%, #D040C9 100%) !important;
+    }
+  </style>
+  <script>
+    (function () {
+      try {
+        var preload = new Image();
+        preload.src = new URL('splash/logo.png', document.baseURI).href;
+      } catch (e) {}
+    })();
+  </script>
   <!--
     If you are serving your web app in a path other than the root, change the
     href value below to reflect the base path you are serving from.
@@ -14,15 +41,12 @@
     This is a placeholder for base href that will be replaced by the value of
     the `--base-href` argument provided to `flutter build`.
   -->
-
-  <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="OurEasyGame — Learn faster with on‑demand tutoring, homework help, exams assistance, projects, and classes. Chat with tutors 24/7 and get matched instantly.">
   <meta name="keywords" content="OurEasyGame, tutoring, homework help, exam help, online classes, projects, thesis, study help, learn, education">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-signin-client_id" content="107453574918-km5t8d3vmhksc24kdc58qrmq8700tec8.apps.googleusercontent.com">
   <meta name="application-name" content="OurEasyGame">
-  <meta name="theme-color" content="#081157">
   <link rel="canonical" href="https://app.oureasygame.com/">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta http-equiv="Content-Language" content="en">
@@ -46,7 +70,7 @@
 
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="OurEasyGame">
   <link rel="apple-touch-icon" sizes="180x180" href="icons/Icon-192.png">
   
@@ -59,38 +83,202 @@
 
   <title>OurEasyGame</title>
   <link rel="manifest" href="manifest.json">
-</head>
-<body>
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function () {
-          navigator.serviceWorker.register('/flutter_service_worker.js');
-        });
-      }
-    </script>
-    <!--
-      MeetHour plugin on Web expects a global `MeetHourExternalAPI`.
-      When the real MeetHour external script is not loaded (or not ready yet),
-      the plugin crashes with:
-      "ReferenceError: MeetHourExternalAPI is not defined".
 
-      Provide a minimal stub so the app can boot.
-      (Full MeetHour video functionality still requires MeetHour's real script.)
-    -->
-    <script>
-      (function () {
-        if (typeof window.MeetHourExternalAPI === 'undefined') {
-          // Constructor-like stub to keep plugin registration from crashing.
-          window.MeetHourExternalAPI = function MeetHourExternalAPIStub() {};
-          window.MeetHourExternalAPI.prototype.init = function () {};
+  <!-- Instant paint: match Flutter splash (gradient + logo) while CanvasKit loads -->
+  <style>
+    :root {
+      --oeg-primary: #D040C9;
+      --oeg-primary-dark: #8A0084;
+      
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--oeg-primary-dark) 0%, var(--oeg-primary) 100%);
+      overflow: hidden;
+    }
+
+    #oeg-bootstrap-splash {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--oeg-primary-dark);
+      background-image:
+        url('splash/background.png'),
+        linear-gradient(135deg, var(--oeg-primary-dark) 0%, var(--oeg-primary) 100%);
+      background-size: cover, cover;
+      background-position: center, center;
+      background-repeat: no-repeat, no-repeat;
+      transition: opacity 0.2s ease-out;
+    }
+
+    #oeg-bootstrap-splash.oeg-bootstrap-splash--hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #oeg-bootstrap-splash .oeg-logo-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: min(200px, 42vw);
+      height: min(200px, 42vw);
+      flex-shrink: 0;
+      background: transparent;
+    }
+
+    #oeg-bootstrap-splash .oeg-logo {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: transparent;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    #oeg-bootstrap-splash .oeg-logo.oeg-logo--loading {
+      opacity: 0;
+    }
+
+    #oeg-bootstrap-splash .oeg-logo.oeg-logo--ready {
+      opacity: 1;
+      transition: opacity 0.15s ease-out;
+    }
+
+    #oeg-bootstrap-splash .oeg-bootstrap-progress {
+      margin-top: 40px;
+      width: min(250px, 60vw);
+      height: 4px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.12);
+      overflow: hidden;
+    }
+
+    #oeg-bootstrap-splash .oeg-bootstrap-progress-bar {
+      width: 35%;
+      height: 100%;
+      border-radius: 2px;
+      background: var(--oeg-primary);
+      animation: oeg-bootstrap-indeterminate 1.2s ease-in-out infinite;
+    }
+
+    @keyframes oeg-bootstrap-indeterminate {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(320%); }
+    }
+  </style>
+  <link rel="preload" href="splash/logo.png" as="image">
+  <link rel="preload" href="splash/background.png" as="image">
+</head>
+<body style="margin:0;background:#8A0084;background-image:linear-gradient(135deg,#8A0084 0%,#D040C9 100%)">
+  <div
+    id="oeg-bootstrap-splash"
+    aria-hidden="true"
+    style="background-color:#8A0084;background-image:linear-gradient(135deg,#8A0084 0%,#D040C9 100%)">
+    <div class="oeg-logo-wrap">
+      <img
+        id="oeg-bootstrap-logo"
+        class="oeg-logo oeg-logo--loading"
+        src="splash/logo.png"
+        alt=""
+        width="200"
+        height="200"
+        decoding="sync"
+        loading="eager"
+        fetchpriority="high">
+    </div>
+    <div class="oeg-bootstrap-progress" role="progressbar" aria-label="Loading">
+      <div class="oeg-bootstrap-progress-bar"></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      function assetUrl(path) {
+        try {
+          return new URL(path, document.baseURI).toString();
+        } catch (e) {
+          return path;
         }
-      })();
-    </script>
+      }
+
+      var splash = document.getElementById('oeg-bootstrap-splash');
+      var logo = document.getElementById('oeg-bootstrap-logo');
+      if (splash) {
+        splash.style.backgroundImage =
+          "url('" + assetUrl('splash/background.png') + "'), " +
+          "linear-gradient(135deg, #8A0084 0%, #D040C9 100%)";
+      }
+
+      function wireBootstrapLogo(img) {
+        if (!img) return;
+        var candidates = [
+          'splash/logo.png',
+          'assets/assets/images/new/logo_splash.png',
+        ];
+        var candidateIndex = 0;
+
+        function markReady() {
+          img.classList.remove('oeg-logo--loading');
+          img.classList.add('oeg-logo--ready');
+        }
+
+        function setSrc() {
+          img.src = assetUrl(candidates[candidateIndex]);
+        }
+
+        img.onload = function () {
+          if (img.naturalWidth > 0) markReady();
+        };
+        img.onerror = function () {
+          candidateIndex += 1;
+          if (candidateIndex < candidates.length) {
+            setSrc();
+            return;
+          }
+          markReady();
+        };
+
+        setSrc();
+      }
+
+      wireBootstrapLogo(logo);
+
+      function removeBootstrapSplash() {
+        var splash = document.getElementById('oeg-bootstrap-splash');
+        if (!splash || splash.dataset.removed === '1') return;
+        splash.dataset.removed = '1';
+        splash.classList.add('oeg-bootstrap-splash--hide');
+        setTimeout(function () {
+          if (splash.parentNode) splash.parentNode.removeChild(splash);
+          document.documentElement.style.overflow = '';
+          document.body.style.overflow = '';
+        }, 220);
+      }
+
+      window.addEventListener('flutter-first-frame', function () {
+        // Keep HTML splash until Flutter splash has painted (avoids flash on mobile web)
+        setTimeout(removeBootstrapSplash, 650);
+      });
+      // Safety net if first-frame event is missed
+      setTimeout(removeBootstrapSplash, 25000);
+    })();
+  </script>
     <!--
-      MeetHour web plugin injects its own scripts.
-      Keeping an additional manual include here causes duplicate execution and crashes with:
-      "Identifier 'MeetHourAPI' has already been declared".
+      Do not register flutter_service_worker.js here — flutter_bootstrap.js already
+      manages the service worker. A second register() causes activation races and
+      the "prepareServiceWorker took more than 4000ms" warning.
     -->
+    <!-- MeetHour External API — must load before flutter_bootstrap.js so that
+         MeetHourExternalAPI is defined when the Flutter plugin initialises. -->
+    <script src="https://api.meethour.io/libs/v2.4.6/external_api.min.js?apiKey=23c15b64a351d136362368932d8420292623530e89498d3f77594b8d4740bdff" type="application/javascript"></script>
     <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
